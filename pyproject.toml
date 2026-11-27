@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=70"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cloudguard-remediator"
+version = "0.1.0"
+description = "CloudGuard policy evaluation, remediation and verification (Python component)"
+requires-python = ">=3.11"
+# No runtime dependencies yet. Pydantic and PyYAML arrive with the JSON schemas.
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.4",
+    "ruff>=0.12",
+    "mypy>=1.17",
+]
+
+[project.scripts]
+# Named differently from the Go binary ("cloudguard") to avoid PATH collisions.
+cloudguard-remediator = "cloudguard.main:main"
+
+[tool.setuptools.packages.find]
+where = ["remediator"]
+include = ["cloudguard*"]
+
+[tool.pytest.ini_options]
+testpaths = ["remediator/tests"]
+addopts = "-ra --strict-markers --strict-config --import-mode=importlib"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["remediator"]
+
+[tool.ruff.lint]
+# E/W: pycodestyle, F: pyflakes, I: import order, B: bugbear, UP: modern syntax,
+# S: security (Bandit rules), SIM: simplifications, RUF: Ruff-specific
+select = ["E", "F", "W", "I", "B", "UP", "S", "SIM", "RUF"]
+
+[tool.ruff.lint.per-file-ignores]
+# pytest uses plain assert statements by design.
+"remediator/tests/**" = ["S101"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["remediator/cloudguard", "remediator/tests"]
+mypy_path = "remediator"
+explicit_package_bases = true
