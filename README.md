@@ -30,7 +30,7 @@ CloudGuard continuously:
 |---|---|
 | Repository foundation | In progress |
 | Go CLI skeleton (`version` command, exit-code contract) | Implemented (local tests only; CI comes in a later branch) |
-| Python policy package skeleton | Planned |
+| Python package skeleton (`--version`, exit-code contract) | Implemented (local tests only; CI comes in a later branch) |
 | Shared JSON schemas | Planned |
 | AWS discovery (S3, EC2, IAM, CloudTrail) | Planned |
 | Terraform drift detection | Planned |
