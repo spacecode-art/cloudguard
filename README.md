@@ -69,7 +69,12 @@ CloudGuard is a **modular monolith**: one deployable unit, with clear internal b
 
 ## Design Decisions
 
-Significant decisions are recorded as Architecture Decision Records in `docs/adr/`. *(Planned: ADR-001 to ADR-004 in the next branch.)*
+Significant decisions are recorded as Architecture Decision Records in [`docs/adr/`](docs/adr/README.md):
+
+- [ADR-001](docs/adr/0001-modular-monolith.md): Modular monolith architecture
+- [ADR-002](docs/adr/0002-go-for-discovery.md): Go for resource discovery
+- [ADR-003](docs/adr/0003-python-for-policy-and-remediation.md): Python for policy evaluation and remediation
+- [ADR-004](docs/adr/0004-json-schema-contracts.md): JSON Schema for cross-language contracts
 
 ## Threat Model
 
