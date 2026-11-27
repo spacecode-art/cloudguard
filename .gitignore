@@ -1,0 +1,44 @@
+# --- Secrets (never commit) ---
+.env
+.env.*
+*.pem
+*.key
+credentials
+*.tfvars
+!*.tfvars.example
+
+# --- Terraform ---
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+tfplan*
+crash.log
+# NOTE: .terraform.lock.hcl is intentionally NOT ignored
+
+# --- Go ---
+/bin/
+*.test
+*.out
+coverage.*
+# NOTE: go.sum is intentionally NOT ignored
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+
+# --- CloudGuard runtime output ---
+artifacts/
+
+# --- OS / editor ---
+.DS_Store
+.idea/
+.vscode/
