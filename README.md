@@ -31,7 +31,7 @@ CloudGuard continuously:
 | Repository foundation | In progress |
 | Go CLI skeleton (`version` command, exit-code contract) | Implemented (local tests only; CI comes in a later branch) |
 | Python package skeleton (`--version`, exit-code contract) | Implemented (local tests only; CI comes in a later branch) |
-| Shared JSON schemas | Planned |
+| Shared JSON schemas (inventory, findings) with Go and Python contract tests | Implemented (local tests only; remediation schema comes with Phase 4) |
 | AWS discovery (S3, EC2, IAM, CloudTrail) | Planned |
 | Terraform drift detection | Planned |
 | Policy engine | Planned |
