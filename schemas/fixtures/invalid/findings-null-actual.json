@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-11-27T07:00:00Z",
+  "findings": [
+    {
+      "finding_id": "finding-001",
+      "resource": {
+        "provider": "aws",
+        "type": "aws_s3_bucket",
+        "id": "bucket-001",
+        "region": "us-east-1"
+      },
+      "policy": {
+        "id": "AWS-S3-001",
+        "severity": "critical"
+      },
+      "violation": {
+        "attribute": "public_access",
+        "expected": false,
+        "actual": null
+      },
+      "status": "OPEN",
+      "observed_at": "2026-11-27T07:00:00Z"
+    }
+  ]
+}

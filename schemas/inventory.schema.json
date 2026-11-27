@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CloudGuard inventory",
+  "description": "Normalized snapshot of discovered cloud resources, produced by the Go scanner.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "generated_at", "provider", "account_id", "scan_status", "resources"],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "generated_at": { "$ref": "#/$defs/timestamp" },
+    "provider": { "const": "aws" },
+    "account_id": { "$ref": "#/$defs/account_id" },
+    "scan_status": { "enum": ["complete", "partial"] },
+    "resources": { "type": "array", "items": { "$ref": "#/$defs/resource" } }
+  },
+  "$defs": {
+    "timestamp": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?Z$"
+    },
+    "account_id": {
+      "type": "string",
+      "pattern": "^[0-9]{12}$"
+    },
+    "resource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resource_id",
+        "provider",
+        "account_id",
+        "region",
+        "resource_type",
+        "attributes",
+        "observed_at",
+        "discovery_status"
+      ],
+      "properties": {
+        "resource_id": { "type": "string", "minLength": 1 },
+        "provider": { "const": "aws" },
+        "account_id": { "$ref": "#/$defs/account_id" },
+        "region": { "type": "string", "pattern": "^(global|[a-z]{2}(-[a-z]+)+-[0-9])$" },
+        "resource_type": {
+          "enum": [
+            "aws_s3_bucket",
+            "aws_security_group",
+            "aws_ebs_volume",
+            "aws_iam_role",
+            "aws_iam_policy",
+            "aws_cloudtrail"
+          ]
+        },
+        "attributes": { "type": "object" },
+        "observed_at": { "$ref": "#/$defs/timestamp" },
+        "discovery_status": { "enum": ["complete", "partial"] }
+      }
+    }
+  }
+}

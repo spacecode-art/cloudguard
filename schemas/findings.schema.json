@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CloudGuard findings",
+  "description": "Security findings produced by the Python policy engine.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "generated_at", "findings"],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "generated_at": { "$ref": "#/$defs/timestamp" },
+    "findings": { "type": "array", "items": { "$ref": "#/$defs/finding" } }
+  },
+  "$defs": {
+    "timestamp": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?Z$"
+    },
+    "non_null": {
+      "not": { "type": "null" }
+    },
+    "finding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["finding_id", "resource", "policy", "violation", "status", "observed_at"],
+      "properties": {
+        "finding_id": { "type": "string", "minLength": 1 },
+        "resource": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["provider", "type", "id", "region"],
+          "properties": {
+            "provider": { "const": "aws" },
+            "type": { "type": "string", "pattern": "^aws_[a-z0-9_]+$" },
+            "id": { "type": "string", "minLength": 1 },
+            "region": { "type": "string", "pattern": "^(global|[a-z]{2}(-[a-z]+)+-[0-9])$" }
+          }
+        },
+        "policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "severity"],
+          "properties": {
+            "id": { "type": "string", "pattern": "^AWS-[A-Z0-9]+-[0-9]{3}$" },
+            "severity": { "enum": ["critical", "high", "medium", "low"] }
+          }
+        },
+        "violation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["attribute", "expected", "actual"],
+          "properties": {
+            "attribute": { "type": "string", "minLength": 1 },
+            "expected": { "$ref": "#/$defs/non_null" },
+            "actual": { "$ref": "#/$defs/non_null" }
+          }
+        },
+        "status": { "enum": ["OPEN", "RESOLVED", "EXEMPT"] },
+        "observed_at": { "$ref": "#/$defs/timestamp" }
+      }
+    }
+  }
+}

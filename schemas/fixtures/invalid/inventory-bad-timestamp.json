@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "27/11/2026 07:00",
+  "provider": "aws",
+  "account_id": "123456789012",
+  "scan_status": "complete",
+  "resources": []
+}

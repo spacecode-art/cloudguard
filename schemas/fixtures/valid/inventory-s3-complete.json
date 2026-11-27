@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-11-27T07:00:00Z",
+  "provider": "aws",
+  "account_id": "123456789012",
+  "scan_status": "complete",
+  "resources": [
+    {
+      "resource_id": "bucket-001",
+      "provider": "aws",
+      "account_id": "123456789012",
+      "region": "us-east-1",
+      "resource_type": "aws_s3_bucket",
+      "attributes": {
+        "public_access": true,
+        "encryption_enabled": true,
+        "versioning_enabled": false
+      },
+      "observed_at": "2026-11-27T07:00:00Z",
+      "discovery_status": "complete"
+    }
+  ]
+}   
