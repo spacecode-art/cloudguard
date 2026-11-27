@@ -29,7 +29,7 @@ CloudGuard continuously:
 | Capability | Status |
 |---|---|
 | Repository foundation | In progress |
-| Go CLI skeleton | Planned |
+| Go CLI skeleton (`version` command, exit-code contract) | Implemented (local tests only; CI comes in a later branch) |
 | Python policy package skeleton | Planned |
 | Shared JSON schemas | Planned |
 | AWS discovery (S3, EC2, IAM, CloudTrail) | Planned |
